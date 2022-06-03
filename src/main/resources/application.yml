@@ -1,0 +1,29 @@
+server:
+  error:
+    include-stacktrace: never
+
+spring:
+  application:
+    name: springboot-essentials
+  datasource:
+    url: jdbc:postgresql://localhost:5432/anime?createDatabaseIfNotExist=true
+    username: postgres
+    password: bseidf40
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, prometheus
+
+info:
+  app: Spring boot App by Djair Costa
