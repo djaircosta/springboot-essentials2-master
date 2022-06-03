@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Log4j2
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
-@SuppressWarnings( "java:S5344" )
+@SuppressWarnings("java:S5344")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DevUserDetailsService devUserDetailsService;
@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-//                csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                // csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .authorizeRequests()
                 .antMatchers("/animes/admin/**").hasRole("ADMIN")
                 .antMatchers("/animes/**").hasRole("USER")
@@ -39,14 +39,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        log.info("Password encoded {}", passwordEncoder.encode("academy"));
+        log.info("Password encoded {}", passwordEncoder.encode(""));
         auth.inMemoryAuthentication()
-                .withUser("elivelton")
-                .password(passwordEncoder.encode("academy"))
+                .withUser("djair")
+                .password(passwordEncoder.encode("mudar@123456"))
                 .roles("USER", "ADMIN")
                 .and()
                 .withUser("dev")
-                .password(passwordEncoder.encode("academy"))
+                .password(passwordEncoder.encode("mudar@123456"))
                 .roles("USER");
         auth.userDetailsService(devUserDetailsService)
                 .passwordEncoder(passwordEncoder);
